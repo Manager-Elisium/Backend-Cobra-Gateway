@@ -10,7 +10,6 @@ const error_type_1 = require("src/common/error-type");
 const user_repository_1 = require("../repository/user.repository");
 const axios_1 = __importDefault(require("axios"));
 const encrypt_1 = require("src/common/encrypt");
-const service_1 = __importDefault(require("src/config/service"));
 async function getSettingProfileService(data) {
     try {
         const { USER_ID, authToken } = data;
@@ -18,7 +17,7 @@ async function getSettingProfileService(data) {
         if (!getOne) {
             throw new standard_error_1.default(error_type_1.ErrorCodes.API_VALIDATION_ERROR, "User Record is not found.");
         }
-        const getUser = await axios_1.default.get(`${service_1.default.USER_AUTH_SERVICE}/auth/user-detail`, {
+        const getUser = await axios_1.default.get(`http://192.168.1.46:3003/auth/user-detail`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `${authToken}`,

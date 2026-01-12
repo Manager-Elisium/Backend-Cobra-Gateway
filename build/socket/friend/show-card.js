@@ -41,7 +41,7 @@ async function showCardFriendPlay(io, socket, data) {
                     });
                     // All Player
                     const result = getPlayer?.USERS?.map((data) => {
-                        const sum = data?.IN_HAND_CARDS?.reduce((accumulator, currentValue) => accumulator + (currentValue?.rank?.value ?? 0), 0);
+                        const sum = data?.IN_HAND_CARDS?.reduce((accumulator, currentValue) => accumulator + (currentValue?.rank?.value ?? 0), 0) ?? 0;
                         return {
                             TOTAL: data?.TOTAL,
                             CONNECTION_ID: data?.CONNECTION_ID,

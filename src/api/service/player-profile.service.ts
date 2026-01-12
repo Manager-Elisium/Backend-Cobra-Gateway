@@ -56,7 +56,7 @@ async function getPlayerProfileService(data: any) {
         gamesWon: getOne?.TOTAL_WIN_GAME ?? 0,
         roundWon: getOne?.TOTAL_ROUND_WIN ?? 0,
         winPercentage:
-          getOne?.TOTAL_WIN_GAME ?? 0 / getOne?.TOTAL_PLAYED_GAME ?? 0,
+          (getOne?.TOTAL_WIN_GAME ?? 0) / ((getOne?.TOTAL_PLAYED_GAME ?? 0) || 1),
         winningStreak: getOne?.WINNING_STREAK,
       },
     };

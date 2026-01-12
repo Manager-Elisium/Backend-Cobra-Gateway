@@ -274,7 +274,7 @@ async function getRankingService(data: any) {
           }
         );
         const listFriend =
-          [...friendList?.data?.friends, friendList?.data?.currentUser] ?? [];
+          [...(friendList?.data?.friends ?? []), ...(friendList?.data?.currentUser ? [friendList.data.currentUser] : [])];
         if (!listFriend.length) {
           throw new StandardError(
             ErrorCodes.API_VALIDATION_ERROR,

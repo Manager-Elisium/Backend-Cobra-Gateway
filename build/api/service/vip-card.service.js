@@ -10,7 +10,6 @@ const error_type_1 = require("src/common/error-type");
 const vip_card_repository_1 = require("../repository/vip-card.repository");
 const moment_1 = __importDefault(require("moment"));
 const axios_1 = __importDefault(require("axios"));
-const service_1 = __importDefault(require("src/config/service"));
 async function buyVipCardService(data) {
     const { USER_ID, VIP_CARD_ID, DAYS, VIP_BENEFITS_ID } = data;
     const isPresentVipCard = await (0, vip_card_repository_1.getBy)({ USER_ID, VIP_CARD_ID, DAYS });
@@ -47,7 +46,7 @@ async function myVipCardService(data) {
             },
         };
         const listofBuyCard = await (0, vip_card_repository_1.getByUserId)(query);
-        const listOfVipCard = await axios_1.default.get(`${service_1.default.COBRA_ADMIN_SERVICE}/vip_card/list`, {
+        const listOfVipCard = await axios_1.default.get("http://192.168.1.46:3001/vip_card/list", {
             headers: {
                 "Content-Type": "application/json",
             },

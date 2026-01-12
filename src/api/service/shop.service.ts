@@ -48,8 +48,8 @@ async function buyShopService(data: any) {
         );
       } else {
         updateUser = (await updateUserRecord(getUser?.ID, {
-          CURRENT_DIAMOND: getShop?.VALUE + getUser?.CURRENT_DIAMOND ?? 0,
-          TOTAL_DIAMOND: getShop?.VALUE + getUser?.TOTAL_DIAMOND ?? 0,
+          CURRENT_DIAMOND: (getShop?.VALUE ?? 0) + (getUser?.CURRENT_DIAMOND ?? 0),
+          TOTAL_DIAMOND: (getShop?.VALUE ?? 0) + (getUser?.TOTAL_DIAMOND ?? 0),
         })) as any;
       }
     } else if (getShop?.TYPE === "Coins") {
@@ -61,8 +61,8 @@ async function buyShopService(data: any) {
         );
       } else {
         updateUser = (await updateUserRecord(getUser?.ID, {
-          CURRENT_COIN: getShop?.VALUE + getUser?.CURRENT_COIN ?? 0,
-          TOTAL_COIN: getShop?.VALUE + getUser?.TOTAL_COIN ?? 0,
+          CURRENT_COIN: (getShop?.VALUE ?? 0) + (getUser?.CURRENT_COIN ?? 0),
+          TOTAL_COIN: (getShop?.VALUE ?? 0) + (getUser?.TOTAL_COIN ?? 0),
         })) as any;
       }
     } else {
@@ -75,8 +75,8 @@ async function buyShopService(data: any) {
           );
         } else {
           updateUser = (await updateUserRecord(getUser?.ID, {
-            CURRENT_DIAMOND: getShop?.VALUE + getUser?.CURRENT_DIAMOND ?? 0,
-            TOTAL_DIAMOND: getShop?.VALUE + getUser?.TOTAL_DIAMOND ?? 0,
+            CURRENT_DIAMOND: (getShop?.VALUE ?? 0) + (getUser?.CURRENT_DIAMOND ?? 0),
+            TOTAL_DIAMOND: (getShop?.VALUE ?? 0) + (getUser?.TOTAL_DIAMOND ?? 0),
           })) as any;
         }
       } else if (getShop?.SUB_TYPE === "Coins") {
@@ -88,8 +88,8 @@ async function buyShopService(data: any) {
           );
         } else {
           updateUser = (await updateUserRecord(getUser?.ID, {
-            CURRENT_COIN: getShop?.VALUE + getUser?.CURRENT_COIN ?? 0,
-            TOTAL_COIN: getShop?.VALUE + getUser?.TOTAL_COIN ?? 0,
+            CURRENT_COIN: (getShop?.VALUE ?? 0) + (getUser?.CURRENT_COIN ?? 0),
+            TOTAL_COIN: (getShop?.VALUE ?? 0) + (getUser?.TOTAL_COIN ?? 0),
           })) as any;
         }
       } else {

@@ -24,7 +24,7 @@ async function leaveNameSpaceInstantPlay(io, socket, data) {
                 });
             }
             else {
-                const getUser = await axios_1.default.get(`http://52.66.74.125/user/auth/user-detail`, {
+                const getUser = await axios_1.default.get(`http://192.168.1.46:3000/user/auth/user-detail`, {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`,

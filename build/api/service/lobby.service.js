@@ -7,10 +7,9 @@ exports.listLobbyService = listLobbyService;
 const standard_error_1 = __importDefault(require("src/common/standard-error"));
 const error_type_1 = require("src/common/error-type");
 const axios_1 = __importDefault(require("axios"));
-const service_1 = __importDefault(require("src/config/service"));
 async function listLobbyService() {
     try {
-        const listOfLobby = await axios_1.default.get(`${service_1.default.COBRA_ADMIN_SERVICE}/lobby/list`, {
+        const listOfLobby = await axios_1.default.get(`http://192.168.1.46:3001/lobby/list`, {
             headers: {
                 "Content-Type": "application/json",
             },

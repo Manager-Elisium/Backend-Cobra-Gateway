@@ -15,7 +15,6 @@ const game_winner_1 = require("src/util/game-winner");
 const moment_1 = __importDefault(require("moment"));
 const vip_card_repository_1 = require("../repository/vip-card.repository");
 const typeorm_1 = require("typeorm");
-const service_1 = __importDefault(require("src/config/service"));
 async function getPlayerProfileService(data) {
     try {
         const { USER_ID } = data;
@@ -54,7 +53,7 @@ async function getPlayerProfileService(data) {
             player_statistics: {
                 gamesWon: getOne?.TOTAL_WIN_GAME ?? 0,
                 roundWon: getOne?.TOTAL_ROUND_WIN ?? 0,
-                winPercentage: (getOne?.TOTAL_WIN_GAME ?? 0) / (getOne?.TOTAL_PLAYED_GAME ?? 1),
+                winPercentage: (getOne?.TOTAL_WIN_GAME ?? 0) / ((getOne?.TOTAL_PLAYED_GAME ?? 0) || 1),
                 winningStreak: getOne?.WINNING_STREAK,
             },
         };
@@ -67,7 +66,7 @@ async function getBadgeService(data) {
     try {
         const { USER_ID } = data;
         const getOne = await (0, user_repository_1.getOneUserRecord)({ USER_ID });
-        const getBadge = await axios_1.default.get(`${service_1.default.COBRA_ADMIN_SERVICE}/badge/list`);
+        const getBadge = await axios_1.default.get(`http://192.168.1.46:3001/badge/list`);
         const listBadge = getBadge?.data?.data?.data ?? [];
         return listBadge?.map((data) => {
             const getUserBadge = getOne?.BADGES?.find((user) => user?.ID === data?.ID);
@@ -103,7 +102,7 @@ async function getAchievementService(data) {
     try {
         const { USER_ID } = data;
         const getOne = await (0, user_repository_1.getOneUserRecord)({ USER_ID });
-        const getBadge = await axios_1.default.get(`${service_1.default.COBRA_ADMIN_SERVICE}/achievement/list`);
+        const getBadge = await axios_1.default.get(`http://192.168.1.46:3001/achievement/list`);
         const listBadge = getBadge?.data?.data?.data ?? [];
         return listBadge?.map((data) => {
             const getUserBadge = getOne?.BADGES?.find((user) => user?.ID === data?.ID);

@@ -185,7 +185,7 @@ async function collectSeasonRewardService(data: any) {
       CURRENT_COIN: getOne?.CURRENT_COIN + collectCoin,
 
       CURRENT_SEASON_COLLECTED_DIAMOND:
-        getOne?.CURRENT_SEASON_COLLECTED_DIAMOND + seasonDiamond ?? 0,
+        (getOne?.CURRENT_SEASON_COLLECTED_DIAMOND ?? 0) + (seasonDiamond ?? 0),
       CURRENT_SEASON_WIN_COIN: getOne?.CURRENT_SEASON_WIN_COIN + collectCoin,
 
       CURRENT_SEASON_REWARDS_COLLECTED: [

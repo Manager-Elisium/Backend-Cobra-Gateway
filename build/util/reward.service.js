@@ -10,14 +10,13 @@ const axios_1 = __importDefault(require("axios"));
 const moment_1 = __importDefault(require("moment"));
 const user_repository_1 = require("src/api/repository/user.repository");
 const game_winner_1 = require("./game-winner");
-const service_1 = __importDefault(require("src/config/service"));
 async function initPageLoad(userId, token) {
     let getUser = await (0, user_repository_1.getOneUserRecord)({ USER_ID: userId });
     let listReward = [];
     if (!getUser) {
         getUser = await (0, user_repository_1.createUserRecord)({ USER_ID: userId });
         try {
-            const friendListCoin = await axios_1.default.get(`http://3.6.41.207/friend/get-friend-id-list`, {
+            const friendListCoin = await axios_1.default.get(`http://192.168.1.46:3003/friend/get-friend-id-list`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
@@ -29,7 +28,7 @@ async function initPageLoad(userId, token) {
                 IS_REQUEST_COIN: false,
                 COIN: 50,
             }));
-            const listOfDailyReward = await axios_1.default.get(`${service_1.default.COBRA_ADMIN_SERVICE}/reward/list`, {
+            const listOfDailyReward = await axios_1.default.get(`http://192.168.1.46:3001/reward/list`, {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -46,7 +45,7 @@ async function initPageLoad(userId, token) {
                     IS_COLLECT: false,
                     IS_TODAY_TASK: false,
                 });
-            const listOfDailyMission = await axios_1.default.get(`${service_1.default.COBRA_ADMIN_SERVICE}/mission/list`, {
+            const listOfDailyMission = await axios_1.default.get(`http://192.168.1.46:3001/mission/list`, {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -85,7 +84,7 @@ async function initPageLoad(userId, token) {
             let currentDate = (0, moment_1.default)(new Date()).startOf("days");
             const isStartAfter30Days = (0, moment_1.default)(currentDate).diff(createDailyRewardDate, "day");
             if (isStartAfter30Days > 29) {
-                const listOfDailyReward = await axios_1.default.get(`${service_1.default.COBRA_ADMIN_SERVICE}/reward/list`, {
+                const listOfDailyReward = await axios_1.default.get(`http://192.168.1.46:3001/reward/list`, {
                     headers: {
                         "Content-Type": "application/json",
                     },
@@ -126,7 +125,7 @@ async function initPageLoad(userId, token) {
                 // console.log(moment(currentDate).diff(todayLoginDate, 'day'));
                 const isDiffernce = (0, moment_1.default)(currentDate).diff(todayLoginDate, "days");
                 if (isDiffernce > 0) {
-                    const friendListCoin = await axios_1.default.get(`http://3.6.41.207/friend/get-friend-id-list`, {
+                    const friendListCoin = await axios_1.default.get(`http://192.168.1.46:3003/friend/get-friend-id-list`, {
                         headers: {
                             "Content-Type": "application/json",
                             Authorization: `Bearer ${token}`,
@@ -189,7 +188,7 @@ async function initPageLoad(userId, token) {
                         }
                     });
                     console.log(getDailyTask);
-                    const listOfDailyMission = await axios_1.default.get(`${service_1.default.COBRA_ADMIN_SERVICE}/mission/list`, {
+                    const listOfDailyMission = await axios_1.default.get(`http://192.168.1.46:3001/mission/list`, {
                         headers: {
                             "Content-Type": "application/json",
                         },

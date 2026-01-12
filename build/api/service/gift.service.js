@@ -92,7 +92,7 @@ async function listCollectGiftService(data) {
             ...new Set(getOne?.map((data) => data.REQUEST_USER_ID)),
         ].toString();
         const reqBody = await (0, encrypt_1.encrypt)(JSON.stringify({ USER_IDS: getUserId }));
-        const getUser = await axios_1.default.post(`http://52.66.74.125/user/auth/list-user-details`, { public_key: reqBody.public_key, content: reqBody.content }, {
+        const getUser = await axios_1.default.post(`http://192.168.1.46:3000/user/auth/list-user-details`, { public_key: reqBody.public_key, content: reqBody.content }, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `${authToken}`,

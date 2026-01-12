@@ -10,7 +10,6 @@ const user_repository_1 = require("../repository/user.repository");
 const leaderboard_repository_1 = require("../repository/leaderboard.repository");
 const typeorm_1 = require("typeorm");
 const axios_1 = __importDefault(require("axios"));
-const service_1 = __importDefault(require("src/config/service"));
 async function getRankingService(data) {
     try {
         const { USER_ID, rankingType, userType, take, page, country } = data;
@@ -78,7 +77,7 @@ async function getRankingService(data) {
             }
             try {
                 console.log(listRankingUserId);
-                let userList = await axios_1.default.post(`${service_1.default.USER_AUTH_SERVICE}/friend/list-user-details`, {
+                let userList = await axios_1.default.post(`http://192.168.1.46:3003/friend/list-user-details`, {
                     userId: listRankingUserId,
                 }, {
                     headers: {
@@ -177,7 +176,7 @@ async function getRankingService(data) {
         }
         else if (userType === "country") {
             try {
-                let userList = await axios_1.default.get(`${service_1.default.USER_AUTH_SERVICE}/friend/country-user-list/${country}`, {
+                let userList = await axios_1.default.get(`http://192.168.1.46:3003/friend/country-user-list/${country}`, {
                     headers: {
                         "Content-Type": "application/json",
                     },
@@ -231,15 +230,12 @@ async function getRankingService(data) {
         }
         else {
             try {
-                let friendList = await axios_1.default.get(`${service_1.default.USER_AUTH_SERVICE}/friend/my-friend-list/${USER_ID}`, {
+                let friendList = await axios_1.default.get(`http://192.168.1.46:3003/friend/my-friend-list/${USER_ID}`, {
                     headers: {
                         "Content-Type": "application/json",
                     },
                 });
-                const listFriend = [
-                    ...(friendList?.data?.friends ?? []),
-                    friendList?.data?.currentUser,
-                ].filter(Boolean);
+                const listFriend = [...(friendList?.data?.friends ?? []), ...(friendList?.data?.currentUser ? [friendList.data.currentUser] : [])];
                 if (!listFriend.length) {
                     throw new standard_error_1.default(error_type_1.ErrorCodes.API_VALIDATION_ERROR, "You have not any Friend. Please add first friend.");
                 }

@@ -9,11 +9,10 @@ const standard_error_1 = __importDefault(require("src/common/standard-error"));
 const error_type_1 = require("src/common/error-type");
 const axios_1 = __importDefault(require("axios"));
 const user_repository_1 = require("../repository/user.repository");
-const service_1 = __importDefault(require("src/config/service"));
 async function listShopService(shopType) {
     try {
         // 13.127.87.96
-        const listOfShop = await axios_1.default.get(`${service_1.default.COBRA_ADMIN_SERVICE}/shop/list/${shopType}`, {
+        const listOfShop = await axios_1.default.get(`http://192.168.1.46:3001/shop/list/${shopType}`, {
             headers: {
                 "Content-Type": "application/json",
             },
@@ -27,7 +26,7 @@ async function listShopService(shopType) {
 async function buyShopService(data) {
     try {
         const { USER_ID, SHOP_ID } = data;
-        const getShopById = await axios_1.default.get(`${service_1.default.COBRA_ADMIN_SERVICE}/shop/get-shop-for-user/${SHOP_ID}`, {
+        const getShopById = await axios_1.default.get(`http://192.168.1.46:3001/shop/get-shop-for-user/${SHOP_ID}`, {
             headers: {
                 "Content-Type": "application/json",
             },

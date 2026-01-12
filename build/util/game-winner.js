@@ -10,7 +10,7 @@ exports.instantGameWinner = instantGameWinner;
 exports.lobbyGameWinner = lobbyGameWinner;
 exports.clubGameWinner = clubGameWinner;
 const user_repository_1 = require("src/api/repository/user.repository");
-const url = 'http://13.126.197.184';
+const url = 'http://192.168.1.46:3005';
 const axios_1 = __importDefault(require("axios"));
 async function instantGameWinner(userIdList) {
     try {

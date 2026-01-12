@@ -9,10 +9,10 @@ if (process.env.NODE_ENV === "production") {
 
 export default {
   PORT: process.env.PORT,
-  USER_AUTH_SERVICE: process.env.USER_AUTH_SERVICE || "http://192.168.1.46:3003",
+  USER_AUTH_SERVICE: process.env.USER_AUTH_SERVICE || "http://43.204.102.183:3003",
   COBRA_GAME_PLAY_SERVICE:
-    process.env.COBRA_GAME_PLAY_SERVICE || "http://192.168.1.46:3004",
-  ADMIN_AUTH_SERVICE: process.env.ADMIN_AUTH_SERVICE || "http://192.168.1.46:3002",
-  COBRA_ADMIN_SERVICE: process.env.COBRA_ADMIN_SERVICE || "http://192.168.1.46:3001",
-  COBRA_CLUB_SERVICE: process.env.COBRA_CLUB_SERVICE || "http://192.168.1.46:3005",
+    process.env.COBRA_GAME_PLAY_SERVICE || "http://13.203.103.227:3004",
+  ADMIN_AUTH_SERVICE: process.env.ADMIN_AUTH_SERVICE || "http://43.204.102.183:3002",
+  COBRA_ADMIN_SERVICE: process.env.COBRA_ADMIN_SERVICE || "http://43.204.102.183:3001",
+  COBRA_CLUB_SERVICE: process.env.COBRA_CLUB_SERVICE || "http://43.204.102.183:3005",
 };

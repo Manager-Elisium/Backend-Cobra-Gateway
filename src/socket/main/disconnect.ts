@@ -22,6 +22,7 @@ async function disconnect(io: any, socket: Socket) {
                 })
             )
         );
+        await channel.close();
     } catch (error) {
         console.error(`[COBRA-GAME-PLAY] Error during disconnect:`, error);
         socket.emit('res:error-message', { status: false, message: error?.message ?? "Unknown Error." });

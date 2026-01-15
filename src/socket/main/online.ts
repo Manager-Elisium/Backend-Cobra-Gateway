@@ -26,6 +26,7 @@ async function onlineUser(socket: Socket, data: any) {
                         })
                     )
                 );
+                await channel.close();
                 console.log(isAuthorized?.ID)
                 const data = await initPageLoad(isAuthorized?.ID, token);
                 const getUser = {
